@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/library_navigation"
+    app:startDestination="@id/itemHome">
+    <fragment
+        android:id="@+id/itemHome"
+        android:name="com.example.a160419132_perpusubaya.view.BookListFragment"
+        android:label="HOME">
+        <action
+            android:id="@+id/actionBookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
+        <argument
+            android:name="nrp"
+            android:defaultValue="belum"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemHistory"
+        android:name="com.example.a160419132_perpusubaya.view.LoanHistoryFragment"
+        android:label="List Riwayat"
+        tools:layout="@layout/fragment_loan_history" />
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.example.a160419132_perpusubaya.view.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/bookDetailFragment"
+        android:name="com.example.a160419132_perpusubaya.view.BookDetailFragment"
+        android:label="Detail Buku"
+        tools:layout="@layout/fragment_book_detail">
+        <argument
+            android:name="isbn"
+            app:argType="string" />
+        <action
+            android:id="@+id/actionToReviewBookFragment"
+            app:destination="@id/reviewBookFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.a160419132_perpusubaya.view.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/actionToListBookFragment"
+            app:destination="@id/itemHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemCategory"
+        android:name="com.example.a160419132_perpusubaya.view.CategoryListFragment"
+        android:label="Daftar Kategori"
+        tools:layout="@layout/fragment_category_list">
+        <action
+            android:id="@+id/actionToBookListCategory"
+            app:destination="@id/bookListCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookListCategoryFragment"
+        android:name="com.example.a160419132_perpusubaya.view.BookListCategoryFragment"
+        android:label="Daftar Buku "
+        tools:layout="@layout/fragment_book_list_category">
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/actionBookDetailFragment2"
+            app:destination="@id/bookDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ItemFavourite"
+        android:name="com.example.a160419132_perpusubaya.view.FavouriteListFragment"
+        android:label="fragment_favourite_list"
+        tools:layout="@layout/fragment_favourite_list" />
+    <fragment
+        android:id="@+id/reviewBookFragment3"
+        android:name="com.example.a160419132_perpusubaya.view.ReviewBookFragment"
+        android:label="fragment_review_book"
+        tools:layout="@layout/fragment_review_book" />
+</navigation>
