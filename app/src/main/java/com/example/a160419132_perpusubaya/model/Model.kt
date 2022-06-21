@@ -1,7 +1,7 @@
 package com.example.a160419132_perpusubaya.model
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 @Entity
