@@ -71,11 +71,15 @@
     <fragment
         android:id="@+id/ItemFavourite"
         android:name="com.example.a160419132_perpusubaya.view.FavouriteListFragment"
-        android:label="fragment_favourite_list"
+        android:label="Buku Favorit"
         tools:layout="@layout/fragment_favourite_list" />
     <fragment
         android:id="@+id/reviewBookFragment3"
         android:name="com.example.a160419132_perpusubaya.view.ReviewBookFragment"
-        android:label="fragment_review_book"
-        tools:layout="@layout/fragment_review_book" />
+        android:label="Ulasan"
+        tools:layout="@layout/fragment_review_book" >
+        <argument
+            android:name="isbn"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -1,5 +1,7 @@
 package com.example.a160419132_perpusubaya.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -46,7 +48,10 @@ class BookListFragment : Fragment() {
         }
         else
         {
-
+            var shared= this.activity?.getSharedPreferences("test", Context.MODE_PRIVATE)
+            var editor=shared?.edit()
+            editor?.putString("nrp",nrp)
+            editor?.apply()
         }
         viewModel= ViewModelProvider(this).get(BookListViewModel::class.java)
         viewModel.loadlist()
@@ -71,5 +76,11 @@ class BookListFragment : Fragment() {
             }
         })
     }
+
+    companion object{
+        val SHARED_PLAYER_NRP= "SHARED_PLAYER_NRP"
+    }
+
+
 
 }

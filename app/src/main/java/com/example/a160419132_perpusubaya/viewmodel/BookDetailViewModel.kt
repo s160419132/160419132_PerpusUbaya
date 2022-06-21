@@ -4,18 +4,30 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
 import com.example.a160419132_perpusubaya.model.Book
+import com.example.a160419132_perpusubaya.model.PerpusDatabase
 import com.example.a160419132_perpusubaya.util.GlobalData
+import com.example.a160419132_perpusubaya.util.buildDb
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class BookDetailViewModel(application: Application): AndroidViewModel(application) {
+class BookDetailViewModel(application: Application): AndroidViewModel(application),CoroutineScope{
 
     val BookLD= MutableLiveData<Book>()
+    private var job= Job()
     fun getBookDetail(isbn:String){
-
-        for (i in GlobalData.booklist){
-            if (i.isbn == isbn){
-                BookLD.value=i
+        launch{
+            val db= buildDb(getApplication())
+            Log.d( "database listuser",db.loginDao().selectAlluser().toString())
+            for (i in db.bookDao().selectAllBook()){
+                if (isbn==i.isbn){
+                    BookLD.value=i
+                }
             }
         }
     }
+
+    override val coroutineContext: CoroutineContext
+        get() = job+Dispatchers.Main
 }
