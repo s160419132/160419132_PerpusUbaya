@@ -77,14 +77,10 @@ class BookDetailFragment : Fragment(),ButtonUlasanListener, ButtonEdit {
     }
 
     override fun onButtonEdit(v: View, obj: Book) {
-        view?.let {
-            NotificationHelper(it.context)
-                .createNotification("Deskripsi Buku diubah",
-                    "Berhasil mengubah deskripsi buku")
-        }
+
 
         val myWorkRequest = OneTimeWorkRequestBuilder<BookWorker>()
-            .setInitialDelay(20, TimeUnit.SECONDS)
+            .setInitialDelay(2, TimeUnit.SECONDS)
             .setInputData(workDataOf(
                 "title" to "Deskripsi Buku diubah",
                 "message" to "Berhasil mengubah deskripsi buku"
