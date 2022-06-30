@@ -10,12 +10,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.example.a160419132_perpusubaya.R
 import com.example.a160419132_perpusubaya.databinding.FragmentBookDetailBinding
 import com.example.a160419132_perpusubaya.model.Book
+import com.example.a160419132_perpusubaya.util.BookWorker
+import com.example.a160419132_perpusubaya.util.NotificationHelper
 import com.example.a160419132_perpusubaya.util.loadImage
 import com.example.a160419132_perpusubaya.viewmodel.BookDetailViewModel
 import kotlinx.android.synthetic.main.fragment_book_detail.*
+import java.util.concurrent.TimeUnit
 
 
 class BookDetailFragment : Fragment(),ButtonUlasanListener, ButtonEdit {
@@ -72,8 +78,21 @@ class BookDetailFragment : Fragment(),ButtonUlasanListener, ButtonEdit {
 
     override fun onButtonEdit(v: View, obj: Book) {
         obj.deskripsi?.let { obj.isbn?.let { it1 -> detailBookModel.update(it, it1) } }
-        Toast.makeText(v.context, "Deskripsi Updated", Toast.LENGTH_SHORT).show()
         Navigation.findNavController(v).popBackStack()
+
+        view?.let {
+            NotificationHelper(it.context).createNotification("Deskripsi berhasil diubah",
+                "deskripsi baru telah berhasil ditambahkan")
+        }
+
+        val myWorkRequest = OneTimeWorkRequestBuilder<BookWorker>()
+            .setInitialDelay(30,TimeUnit.SECONDS)
+            .setInputData(workDataOf(
+                "title" to "Deskripsi Berhasil Diubah",
+                "message" to "deskripsi baru telah berhasil ditambahkan"
+            ))
+            .build()
+        WorkManager.getInstance(requireContext()).enqueue(myWorkRequest)
     }
 
 }
