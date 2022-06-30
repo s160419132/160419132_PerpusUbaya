@@ -7,27 +7,27 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Book(
     @ColumnInfo(name="isbn")
-    val isbn:String?,
+    var isbn:String?,
     @ColumnInfo(name="judul")
-    val judul:String?,
+    var judul:String?,
     @ColumnInfo(name="subjudul")
-    val subjudul:String?,
+    var subjudul:String?,
     @ColumnInfo(name="penulis")
-    val penulis:String?,
+    var penulis:String?,
     @ColumnInfo(name="terbit")
-    val terbit:String?,
+    var terbit:String?,
     @ColumnInfo(name="penerbit")
-    val penerbit:String?,
+    var penerbit:String?,
     @ColumnInfo(name="jumlah_hal")
-    val jumlahHalaman:Int?,
+    var jumlahHalaman:Int?,
     @ColumnInfo(name="deskripsi")
-    val deskripsi:String?,
+    var deskripsi:String?,
     @ColumnInfo(name="website")
-    val website:String?,
+    var website:String?,
     @ColumnInfo(name="urlImage")
-    val urlImage:String?,
+    var urlImage:String?,
     @ColumnInfo(name="kategori")
-    val kategori:String?
+    var kategori:String?
 ){
     @PrimaryKey(autoGenerate = true)
     var id_book:Int =0

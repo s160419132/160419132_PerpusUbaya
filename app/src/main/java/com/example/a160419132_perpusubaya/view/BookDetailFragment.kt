@@ -5,18 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.a160419132_perpusubaya.R
 import com.example.a160419132_perpusubaya.databinding.FragmentBookDetailBinding
+import com.example.a160419132_perpusubaya.model.Book
 import com.example.a160419132_perpusubaya.util.loadImage
 import com.example.a160419132_perpusubaya.viewmodel.BookDetailViewModel
 import kotlinx.android.synthetic.main.fragment_book_detail.*
 
 
-class BookDetailFragment : Fragment(),ButtonUlasanListener {
+class BookDetailFragment : Fragment(),ButtonUlasanListener, ButtonEdit {
     private lateinit var detailBookModel: BookDetailViewModel
     private lateinit var dataBinding:FragmentBookDetailBinding
     override fun onCreateView(
@@ -35,6 +37,7 @@ class BookDetailFragment : Fragment(),ButtonUlasanListener {
             var isbn=BookDetailFragmentArgs.fromBundle(requireArguments()).isbn
             detailBookModel.getBookDetail(isbn)
         }
+
         ObserveDetailModel()
 
         /*btnUlasan.setOnClickListener {
@@ -47,6 +50,8 @@ class BookDetailFragment : Fragment(),ButtonUlasanListener {
         detailBookModel.BookLD.observe(viewLifecycleOwner, Observer {
             dataBinding.detailbuku=it
             dataBinding.ulasanListener=this
+            dataBinding.listener = this
+
             /*txtDetailJudul.setText("Judul : "+it.judul)
             txtDetaiPenulis.setText("Penulis : "+it.penulis)
             txtDetailJmlHal.setText("Jumlah Halaman :"+it.jumlahHalaman.toString())
@@ -63,6 +68,12 @@ class BookDetailFragment : Fragment(),ButtonUlasanListener {
         var isbn= v.tag.toString()
         val action= BookDetailFragmentDirections.actionToReviewBookFragment(isbn)
         Navigation.findNavController(v).navigate(action)
+    }
+
+    override fun onButtonEdit(v: View, obj: Book) {
+        obj.deskripsi?.let { obj.isbn?.let { it1 -> detailBookModel.update(it, it1) } }
+        Toast.makeText(v.context, "Deskripsi Updated", Toast.LENGTH_SHORT).show()
+        Navigation.findNavController(v).popBackStack()
     }
 
 }

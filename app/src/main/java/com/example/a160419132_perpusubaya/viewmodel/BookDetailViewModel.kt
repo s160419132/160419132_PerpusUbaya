@@ -28,6 +28,13 @@ class BookDetailViewModel(application: Application): AndroidViewModel(applicatio
         }
     }
 
+    fun update(deskripsi:String, isbn:String) {
+        launch {
+            val db = buildDb(getApplication())
+            db.bookDao().updateBook(deskripsi, isbn)
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = job+Dispatchers.Main
 }

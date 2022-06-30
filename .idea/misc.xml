@@ -27,6 +27,12 @@
         <entry key="..\:/Kuliah/semester6/ANMP/160419132_PerpusUbaya/app/src/main/res/menu/bottom_menu.xml" value="0.25833333333333336" />
         <entry key="..\:/Kuliah/semester6/ANMP/160419132_PerpusUbaya/app/src/main/res/menu/detail_menu.xml" value="0.17552083333333332" />
         <entry key="..\:/Kuliah/semester6/ANMP/160419132_PerpusUbaya/app/src/main/res/menu/drawer_menu.xml" value="0.264" />
+        <entry key="..\:/Users/gilan/AndroidStudioProjects/160419132_PerpusUbaya/app/src/main/res/layout/book_list_item.xml" value="0.536" />
+        <entry key="..\:/Users/gilan/AndroidStudioProjects/160419132_PerpusUbaya/app/src/main/res/layout/fragment_book_detail.xml" value="0.264" />
+        <entry key="..\:/Users/gilan/AndroidStudioProjects/160419132_PerpusUbaya/app/src/main/res/layout/fragment_book_list.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/gilan/AndroidStudioProjects/160419132_PerpusUbaya/app/src/main/res/layout/fragment_login.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/gilan/AndroidStudioProjects/160419132_PerpusUbaya/app/src/main/res/layout/fragment_review_book.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/gilan/AndroidStudioProjects/160419132_PerpusUbaya/app/src/main/res/layout/review_list_item.xml" value="0.10989583333333333" />
       </map>
     </option>
   </component>

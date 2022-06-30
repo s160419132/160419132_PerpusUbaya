@@ -31,6 +31,9 @@ interface BookDao{
     @Query("SELECT * From book")
     suspend fun selectAllBook(): List<Book>
 
+    @Query("UPDATE Book SET deskripsi=:deskripsi WHERE isbn=:isbn")
+    suspend fun updateBook(deskripsi:String, isbn:String)
+
     @Delete
     suspend fun deleteBook(book: Book)
 }
