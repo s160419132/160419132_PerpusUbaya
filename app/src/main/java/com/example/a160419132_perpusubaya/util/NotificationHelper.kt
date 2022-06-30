@@ -13,14 +13,14 @@ import com.example.a160419132_perpusubaya.R
 import com.example.a160419132_perpusubaya.view.MainActivity
 
 class NotificationHelper(val context: Context) {
-    private val CHANNEL_ID = "todo_channel_id"
+    private val CHANNEL_ID = "book_channel_id"
     private val NOTIFICATION_ID = 1
 
     private fun createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val channel = NotificationChannel(CHANNEL_ID, CHANNEL_ID,
                 NotificationManager.IMPORTANCE_DEFAULT).apply {
-                description = "Todo channel description"
+                description = "Book channel description"
             }
             val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
@@ -33,10 +33,18 @@ class NotificationHelper(val context: Context) {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(context,0, intent, 0)
+        val icon = BitmapFactory.decodeResource(context.resources, R.drawable.description)
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.edit)
+            .setLargeIcon(icon)
             .setContentTitle(title)
             .setContentText(message)
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(icon)
+                    .bigLargeIcon(null)
+            )
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()

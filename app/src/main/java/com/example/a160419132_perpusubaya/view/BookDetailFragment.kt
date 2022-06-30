@@ -77,22 +77,22 @@ class BookDetailFragment : Fragment(),ButtonUlasanListener, ButtonEdit {
     }
 
     override fun onButtonEdit(v: View, obj: Book) {
-        obj.deskripsi?.let { obj.isbn?.let { it1 -> detailBookModel.update(it, it1) } }
-        Navigation.findNavController(v).popBackStack()
-
         view?.let {
-            NotificationHelper(it.context).createNotification("Deskripsi berhasil diubah",
-                "deskripsi baru telah berhasil ditambahkan")
+            NotificationHelper(it.context)
+                .createNotification("Deskripsi Buku diubah",
+                    "Berhasil mengubah deskripsi buku")
         }
 
         val myWorkRequest = OneTimeWorkRequestBuilder<BookWorker>()
-            .setInitialDelay(30,TimeUnit.SECONDS)
+            .setInitialDelay(20, TimeUnit.SECONDS)
             .setInputData(workDataOf(
-                "title" to "Deskripsi Berhasil Diubah",
-                "message" to "deskripsi baru telah berhasil ditambahkan"
-            ))
-            .build()
+                "title" to "Deskripsi Buku diubah",
+                "message" to "Berhasil mengubah deskripsi buku"
+            )).build()
         WorkManager.getInstance(requireContext()).enqueue(myWorkRequest)
+
+        obj.deskripsi?.let { obj.isbn?.let { it1 -> detailBookModel.update(it, it1) } }
+        Navigation.findNavController(v).popBackStack()
     }
 
 }
